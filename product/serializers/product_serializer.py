@@ -16,5 +16,4 @@ class ProductSerializer(serializers.ModelSerializer):
             "price",
             "active",
             "category",
-            "categories_id",
         ]

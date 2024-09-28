@@ -1,4 +1,4 @@
-rom rest_framework import serializers
+from rest_framework import serializers
 
 from order.models import Order
 from product.models import Product
