@@ -1,6 +1,6 @@
 import factory
 
-from product.models import Category, Product
+from .models import Category, Product
 
 
 class CategoryFactory(factory.django.DjangoModelFactory):
@@ -27,8 +27,6 @@ class ProductFactory(factory.django.DjangoModelFactory):
         if extracted:
             for category in extracted:
                 self.category.add(category)
-        
-        self.save()
 
     class Meta:
         model = Product
