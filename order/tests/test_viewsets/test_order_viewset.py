@@ -1,4 +1,3 @@
-
 import json
 from django.urls import reverse
 from rest_framework import status
@@ -57,4 +56,4 @@ class TestOrderViewSet(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         created_order = Order.objects.get(user=user)
-       created_order = Order.objects.get(user=user)
+        created_order = Order.objects.get(user=user)
