@@ -6,7 +6,8 @@ from rest_framework.authtoken.models import Token
 
 from order.factories import OrderFactory, UserFactory
 from product.factories import CategoryFactory, ProductFactory
-from product.models import Product
+from product.models import Product, category
+from order.models import Order
 
 
 class TestOrderViewSet(APITestCase):
@@ -19,7 +20,7 @@ class TestOrderViewSet(APITestCase):
 
         self.category = CategoryFactory(title="technology")
         self.product = ProductFactory(
-            title="Dualsense", price=369, categories=[self.category]
+            title="Dualsense", price=369, category=[self.category]
         )
         self.order = OrderFactory(product=[self.product])
 
@@ -39,7 +40,7 @@ class TestOrderViewSet(APITestCase):
             order_data["results"][0]["product"][0]["active"], self.product.active
         )
         self.assertEqual(
-            order_data["results"][0]["product"][0]["categories"][0]["title"],
+            order_data["results"][0]["product"][0]["category"][0]["title"],
             self.category.title,
         )
 
@@ -55,5 +56,5 @@ class TestOrderViewSet(APITestCase):
         )
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        created_order = Order.objects.get(user=user)
-        created_order = Order.objects.get(user=user)
+        created_order = Order.objects.get(user=user)  # Deve funcionar agora
+        self.assertEqual(created_order.user, user)

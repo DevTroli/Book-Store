@@ -15,19 +15,22 @@ class CategoryFactory(factory.django.DjangoModelFactory):
 
 
 class ProductFactory(factory.django.DjangoModelFactory):
-    price = factory.Faker("pyint")
-    category = factory.LazyAttribute(CategoryFactory)
-    title = factory.Faker("pystr")
-
-    @factory.post_generation
-    def category(self, create, extracted, **kwargs):
-        if not create:
-            return
-
-        if extracted:
-            for category in extracted:
-                self.category.add(category)
-
     class Meta:
         model = Product
         skip_postgeneration_save = True
+
+    title = factory.Sequence(lambda n: f"Product {n}")
+    price = factory.Faker("random_int", min=10, max=1000)
+    active = True
+
+    # Use o método post-generation para adicionar categorias
+    @factory.post_generation
+    def category(self, create, extracted, **kwargs):
+        if not create:
+            # Simple build, do nothing
+            return
+
+        if extracted:
+            # A list of categories were passed in
+            for category in extracted:
+                self.category.add(category)
