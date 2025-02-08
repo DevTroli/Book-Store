@@ -5,7 +5,7 @@ description = ""
 authors = ["Pablo Troli <brawlixo123@gmail.com>"]
 readme = "README.md"
 packages = [
-    { include = "book_store_api" },
+    { include = "setup" },
 ]
 
 [tool.poetry.dependencies]
