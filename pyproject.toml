@@ -4,6 +4,9 @@ version = "0.1.0"
 description = ""
 authors = ["Pablo Troli <brawlixo123@gmail.com>"]
 readme = "README.md"
+packages = [
+    { include = "book_store_api" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.12"
