@@ -19,6 +19,12 @@ jobs:
         env:
           POETRY_VIRTUALENVS_CREATE: false
 
+      - name: Environment Info
+        run: |
+          python --version
+          poetry --version
+          poetry show django
+
       - name: View poetry --help
         run: poetry --help
 
@@ -31,7 +37,13 @@ jobs:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
         run: |
-          poetry run python manage.py test
+          poetry run python manage.py test -v 2
+
+      - name: Check Test Coverage
+        run: |
+          poetry run coverage run manage.py test
+          poetry run coverage report
+
       - name: Wemake Python Stylguide
         uses: wemake-services/wemake-python-styleguide@0.16.0
         continue-on-error: true
