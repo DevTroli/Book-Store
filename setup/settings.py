@@ -5,7 +5,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = "django-insecure-f*k@=53bc5!shef1-6w+m$-g)kspbaljz%8k4(j7iuc-u2_dyd"
 
 
 DEBUG = int(os.environ.get("DEBUG", default=0))
@@ -28,8 +28,8 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "debug_toolbar",
     "django_extensions",
-    "order.apps.OrderConfig",
-    "product.apps.ProductConfig",
+    "order",
+    "product",
 ]
 
 REST_FRAMEWORK = {
