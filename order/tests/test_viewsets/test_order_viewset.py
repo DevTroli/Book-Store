@@ -6,7 +6,7 @@ from rest_framework.authtoken.models import Token
 
 from order.factories import OrderFactory, UserFactory
 from product.factories import CategoryFactory, ProductFactory
-from product.models import Product, category
+from product.models import Product, Category
 from order.models import Order
 
 
