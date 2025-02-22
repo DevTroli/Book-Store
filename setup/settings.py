@@ -117,15 +117,15 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
-
+# Configurações de arquivos estáticos
 STATIC_URL = "/static/"
-
-# Adicionando o caminho dos arquivos estáticos
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # Para coletar arquivos estáticos em produção
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "static"),  # Caminho relativo ao diretório base do projeto
 ]
+
+# Configurações do WhiteNoise para servir arquivos estáticos
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
